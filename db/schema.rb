@@ -14,17 +14,10 @@ ActiveRecord::Schema.define(version: 20170315203141) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "answer"
-    t.integer  "day_log_id"
     t.integer  "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["day_log_id"], name: "index_answers_on_day_log_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
-  end
-
-  create_table "day_logs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
