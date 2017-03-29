@@ -1,4 +1,4 @@
-# spec/requests/answers_spec.rb
+# spec/requests/api/v1/answers_spec.rb
 require 'rails_helper'
 
 RSpec.describe 'Answer API', type: :request do
@@ -8,10 +8,10 @@ RSpec.describe 'Answer API', type: :request do
   let!(:questions) { create_list(:question, 10) }
   let(:question) { questions.first.id }
 
-  # Test suite for GET /answers
-  describe 'GET /answers with auth' do
+  # Test suite for GET /api/v1/answers
+  describe 'GET /api/v1/answers with auth' do
     # make HTTP get request before each example
-    before { get '/answers', params: {}, headers: jwt_header }
+    before { get '/api/v1/answers', params: {}, headers: jwt_header }
 
     it 'returns answer' do
       # Note `json` is a custom helper to parse JSON responses
@@ -24,18 +24,18 @@ RSpec.describe 'Answer API', type: :request do
     end
   end
 
-  describe 'GET /answers without auth' do
+  describe 'GET /api/v1/answers without auth' do
     # make HTTP get request before each example
-    before { get '/answers' }
+    before { get '/api/v1/answers' }
 
     it 'returns status code 401' do
       expect(response).to have_http_status(401)
     end
   end
 
-  # Test suite for GET /answers/:id
-  describe 'GET /answers/:id with auth' do
-    before { get "/answers/#{answer}", params: {}, headers: jwt_header }
+  # Test suite for GET /api/v1/answers/:id
+  describe 'GET /api/v1/answers/:id with auth' do
+    before { get "/api/v1/answers/#{answer}", params: {}, headers: jwt_header }
 
     context 'when the record exists' do
       it 'returns the todo' do
@@ -61,21 +61,21 @@ RSpec.describe 'Answer API', type: :request do
     end
   end
 
-  describe 'GET /answers/:id without auth' do
-    before { get "/answers/#{answer}" }
+  describe 'GET /api/v1/answers/:id without auth' do
+    before { get "/api/v1/answers/#{answer}" }
 
     it 'returns status code 401' do
       expect(response).to have_http_status(401)
     end
   end
 
-  # Test suite for POST /answers
-  describe 'POST /answers with auth' do
+  # Test suite for POST /api/v1/answers
+  describe 'POST /api/v1/answers with auth' do
     # valid payload
     let(:valid_attributes) { { answer: "Hey hej", question_id: question } }
 
     context 'when the request is valid' do
-      before { post '/answers', params: valid_attributes, headers: jwt_header }
+      before { post '/api/v1/answers', params: valid_attributes, headers: jwt_header }
 
       it 'creates an answer' do
         valid_attributes.each do |k, v|
@@ -89,12 +89,12 @@ RSpec.describe 'Answer API', type: :request do
     end
   end
 
-  describe 'POST /answers without auth' do
+  describe 'POST /api/v1/answers without auth' do
     # valid payload
     let(:valid_attributes) { { answer: "Hey hej", question_id: question } }
 
     context 'when the request is valid' do
-      before { post '/answers', params: valid_attributes}
+      before { post '/api/v1/answers', params: valid_attributes}
 
       it 'returns status code 401' do
         expect(response).to have_http_status(401)
@@ -103,12 +103,12 @@ RSpec.describe 'Answer API', type: :request do
   end
 
 
-  # Test suite for PUT /answers/:id
-  describe 'PUT /answers/:id with auth' do
+  # Test suite for PUT /api/v1/answers/:id
+  describe 'PUT /api/v1/answers/:id with auth' do
     let(:valid_attributes) {{ answer: "Hey hej" }}
 
     context 'when the record exists' do
-      before { put "/answers/#{answer}", params: valid_attributes, headers: jwt_header }
+      before { put "/api/v1/answers/#{answer}", params: valid_attributes, headers: jwt_header }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -120,11 +120,11 @@ RSpec.describe 'Answer API', type: :request do
     end
   end
 
-  describe 'PUT /answers/:id without auth' do
+  describe 'PUT /api/v1/answers/:id without auth' do
     let(:valid_attributes) {{ answer: "Hey hej" }}
 
     context 'when the record exists' do
-      before { put "/answers/#{answer}", params: valid_attributes }
+      before { put "/api/v1/answers/#{answer}", params: valid_attributes }
 
       it 'returns status code 401' do
         expect(response).to have_http_status(401)
@@ -132,17 +132,17 @@ RSpec.describe 'Answer API', type: :request do
     end
   end
 
-  # Test suite for DELETE /answers/:id
-  describe 'DELETE /answers/:id with auth' do
-    before { delete "/answers/#{answer}", params: {}, headers: jwt_header }
+  # Test suite for DELETE /api/v1/answers/:id
+  describe 'DELETE /api/v1/answers/:id with auth' do
+    before { delete "/api/v1/answers/#{answer}", params: {}, headers: jwt_header }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
     end
   end
 
-  describe 'DELETE /answers/:id without auth' do
-    before { delete "/answers/#{answer}"}
+  describe 'DELETE /api/v1/answers/:id without auth' do
+    before { delete "/api/v1/answers/#{answer}"}
 
     it 'returns status code 401' do
       expect(response).to have_http_status(401)
