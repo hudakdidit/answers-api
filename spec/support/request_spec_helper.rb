@@ -12,9 +12,9 @@ module RequestSpecHelper
     JSON.parse(str).with_indifferent_access
   end
 
-  def jwt_header
+  def jwt_header(email = nil, password = nil)
     user = create(:user)
-    command = AuthenticateUser.call(user.email, user.password)
+    command = AuthenticateUser.call(email || user.email, password || user.password)
 
     if command.success?
       { 'JWT-Authorization': command.result }

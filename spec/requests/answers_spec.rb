@@ -38,7 +38,7 @@ RSpec.describe 'Answer API', type: :request do
     before { get "/api/v1/answers/#{answer}", params: {}, headers: jwt_header }
 
     context 'when the record exists' do
-      it 'returns the todo' do
+      it 'returns the answer' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(answer)
       end
