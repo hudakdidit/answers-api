@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
@@ -21,6 +25,10 @@ gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'simple_command'
+
+gem 'graphql'
+gem 'graphiql-rails'
+gem 'graphql-relay'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
