@@ -3,26 +3,48 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+## Details
 
-* Ruby version
+* Ruby version: 2.4
 
-* System dependencies
+* Database initialization: `rails db:seed`
 
-* Configuration
+* How to run the test suite: `rspec -f d`
 
-* Database creation
+* Deployment instructions: **todo**
 
-* Database initialization
+## References
 
-* How to run the test suite
+* JWT Authorization: https://www.pluralsight.com/guides/ruby-ruby-on-rails/token-based-authentication-with-ruby-on-rails-5-api
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+## Models
 
-* ...
+### User
+* has_many Questions, Answers (through Questions)
 
-## Notes
+### Question
+* question
+* has_many Tags, Answers
 
-JWT Authorization: https://www.pluralsight.com/guides/ruby-ruby-on-rails/token-based-authentication-with-ruby-on-rails-5-api
+### Answer
+* question_id
+* answer_type: enum
+* has_many Responses, Measurements, Captures
+
+### Response
+* text
+
+### Capture
+* has_many Media
+
+### Measurement
+* number
+* type: enum
+
+### Media
+* type: enum
+* url
+* name
+* description
