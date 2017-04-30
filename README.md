@@ -27,10 +27,10 @@ application up and running.
 ### Question
 * question
 * has_many Tags, Answers
+* type: enum
 
 ### Answer
 * question_id
-* answer_type: enum
 * has_many Responses, Measurements, Captures
 
 ### Response
